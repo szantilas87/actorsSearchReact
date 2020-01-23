@@ -24,7 +24,7 @@ const ActorsState = props => {
 
   const [state, dispatch] = useReducer(ActorsReducer, initialState);
 
-  //   Search Users
+  //   Search Actors
   const searchActors = async text => {
     setLoading();
     const res = await axios.get(
@@ -53,7 +53,22 @@ const ActorsState = props => {
     });
   };
 
-  // Clear users
+  // Get Actor
+
+  const getActor = async id => {
+    setLoading();
+
+    const res = await axios.get(
+      `https://api.themoviedb.org/3/person/${id}?api_key=${process.env.REACT_APP_API_KEY}`
+    );
+
+    dispatch({
+      type: GET_ACTOR,
+      payload: res.data
+    });
+  };
+
+  // Clear actors
   const clearActors = () =>
     dispatch({
       type: CLEAR_ACTORS
@@ -70,7 +85,8 @@ const ActorsState = props => {
         actor: state.actor,
         loading: state.loading,
         searchActors,
-        clearActors
+        clearActors,
+        getActor
       }}
     >
       {' '}
