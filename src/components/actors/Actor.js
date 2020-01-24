@@ -12,51 +12,57 @@ const Actor = ({ match }) => {
   }, []);
 
   const {
-    also_known_as,
     biography,
     birthday,
     deathday,
     name,
     place_of_birth,
-    homepage
+    homepage,
+    profile_path
   } = actor;
+
+  const IMAGE_URL = 'https://image.tmdb.org/t/p/w500';
 
   if (loading) return <Spinner />;
   return (
     <div>
       <Fragment>
-        {/* <Link to='/' className='btn btn-light'>
+        <Link to='/' className='btn btn-light'>
           Back To Search{' '}
         </Link>
-        Hireable: {''}{' '}
-        {hireable ? (
-          <i className='fas fa-check text-success' />
-        ) : (
-          <i className='fas fa-times-circle text-danger' />
-        )}{' '}
         <div className='card grid-2'>
           <div className='all-center'>
-            <img
-              src={avatar_url}
-              className='round-img'
-              alt=''
-              style={{
-                width: '150px'
-              }}
-            />{' '}
-            <h1> {name} </h1> <p> Location: {location} </p>{' '}
+            <img src={`${IMAGE_URL}${profile_path}`} alt='' /> <h1> {name} </h1>{' '}
+            <p> Place of birth: {place_of_birth} </p>{' '}
+            {birthday && (
+              <Fragment>
+                <p> Birthday:{birthday} </p>
+              </Fragment>
+            )}{' '}
+            {deathday && (
+              <Fragment>
+                <p> Deathday:{deathday} </p>
+              </Fragment>
+            )}{' '}
+            {homepage && (
+              <Fragment>
+                <p>
+                  Homepage:
+                  <a href={homepage} target='_blank' rel='noopener noreferrer'>
+                    {homepage}
+                  </a>
+                </p>
+              </Fragment>
+            )}
           </div>{' '}
           <div>
             {' '}
-            {bio && (
+            {biography && (
               <Fragment>
-                <h3> Bio </h3> <p> {bio} </p>{' '}
+                <h3> Bio: </h3> <p> {biography} </p>{' '}
               </Fragment>
             )}{' '}
-            <a href={html_url} className='btn btn-dark my-1' target='_blank'>
-              Visit Github Profile{' '}
-            </a>{' '}
-            <ul>
+            {/* <ul>
               <li>
                 {' '}
                 {login && (
@@ -81,10 +87,10 @@ const Actor = ({ match }) => {
                   </Fragment>
                 )}{' '}
               </li>{' '}
-            </ul>{' '}
+            </ul>{' '} */}
           </div>{' '}
         </div>{' '}
-        <div className='card text-center'>
+        {/* <div className='card text-center'>
           <div className='badge badge-primary'> Followers: {followers} </div>{' '}
           <div className='badge badge-success'> Following: {following} </div>{' '}
           <div className='badge badge-light'>
@@ -92,8 +98,7 @@ const Actor = ({ match }) => {
             Public Repos: {public_repos}{' '}
           </div>{' '}
           <div className='badge badge-dark'> Public Gists: {public_gists} </div>{' '}
-        </div>{' '}
-        <Repos repos={repos} />{' '} */}
+        </div>{' '} */}
       </Fragment>{' '}
     </div>
   );
