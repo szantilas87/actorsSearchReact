@@ -3,4 +3,4 @@ Techonologies used:
 - CSS
 - Java Script
 - React JS
-- Movie DB Api
+- Movie DB API
